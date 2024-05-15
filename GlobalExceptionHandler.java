@@ -23,6 +23,15 @@ import io.micrometer.common.lang.Nullable;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(NoSuchElementException.class)
+    ProblemDetail handleNoSuchElementException(NoSuchElementException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        
+        problemDetail.setTitle("Recurso Não Encontrado");
+        problemDetail.setType(URI.create("https://api.biblioteca.com/errors/not-found"));
+        return problemDetail;
+    }	
+
 	@Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, 
     		HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {

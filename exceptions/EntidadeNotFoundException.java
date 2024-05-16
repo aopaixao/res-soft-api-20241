@@ -1,4 +1,3 @@
-package br.org.serratec.biblioteca.exceptions;
 
 public class EntidadeNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

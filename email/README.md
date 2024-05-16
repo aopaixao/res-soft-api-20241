@@ -2,13 +2,22 @@
 
 ## Incluir a dependência no pom.xml
 
-```bash
-  <dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-mail</artifactId>
-	</dependency>
-```
+[pom.xml](pom.xml-fragment.txt)
+
 
 ## Incluir as propriedades do servidor de envio de e-mail no application.properties
 
-[a relative link](application.properties)
+[application.properties](application.properties)
+
+
+## Incluir as propriedades do servidor de envio de e-mail no application.properties
+
+[application.properties](application.properties)
+
+
+## Adicionar o serviço (classe EmailService) para envio de e-mail
+
+[EmailService](EmailService.java)
+
+
+## Utilizar o serviço (classe EmailService) para envio de e-mail na aplicação

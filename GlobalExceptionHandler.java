@@ -23,15 +23,38 @@ import io.micrometer.common.lang.Nullable;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(NoSuchElementException.class)
+	@ExceptionHandler(IllegalArgumentException.class)
+	ProblemDetail handleIllegalArgumentException(IllegalArgumentException e) {
+
+		ProblemDetail pd = ProblemDetail
+		        .forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Ocorreu um erro: '" 
+		        	+ e.getLocalizedMessage());
+		    pd.setType(URI.create("http://localhost:8080/errors/internal-server-error"));
+		    pd.setTitle("Erro Interno");
+		    pd.setProperty("hostname", "localhost");
+		    return pd;
+	}
+
+	@ExceptionHandler(EntidadeNotFoundException.class)
+	ProblemDetail handleEntidadeNotFoundException(EntidadeNotFoundException e) {
+		ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+				HttpStatus.NOT_FOUND, "Ocorreu um erro: " + e.getLocalizedMessage());
+		
+		problemDetail.setTitle("Recurso Não Encontrado");
+		problemDetail.setType(URI.create("https://api.biblioteca.com/errors/not-found"));
+		return problemDetail;
+	}
+	
+	@ExceptionHandler(NoSuchElementException.class)
     ProblemDetail handleNoSuchElementException(NoSuchElementException e) {
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+        		HttpStatus.NOT_FOUND, e.getMessage());
         
         problemDetail.setTitle("Recurso Não Encontrado");
         problemDetail.setType(URI.create("https://api.biblioteca.com/errors/not-found"));
         return problemDetail;
-    }	
-
+    }
+	
 	@Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, 
     		HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
@@ -41,7 +64,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             problemDetailBody.setProperty("message", ex.getMessage());
             if (ex instanceof MethodArgumentNotValidException subEx) {
                 BindingResult result = subEx.getBindingResult();
-                problemDetailBody.setType(URI.create("http://api.biblioteca.com/erros/argument-not-valid"));;
+                problemDetailBody.setType(URI.create("http://api.biblioteca.com/erros/argument-not-valid"));
                 problemDetailBody.setTitle("Erro na requisição");
                 problemDetailBody.setDetail("Ocorreu um erro ao processar a Requisição");
                 problemDetailBody.setProperty(

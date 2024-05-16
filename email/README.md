@@ -10,11 +10,6 @@
 [application.properties](application.properties)
 
 
-## Incluir as propriedades do servidor de envio de e-mail no application.properties
-
-[application.properties](application.properties)
-
-
 ## Adicionar o serviço (classe EmailService) para envio de e-mail
 
 [EmailService](EmailService.java)

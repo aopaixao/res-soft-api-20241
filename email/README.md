@@ -11,4 +11,4 @@
 
 ## Incluir as propriedades do servidor de envio de e-mail no application.properties
 
-[a relative link] application.properties
+[a relative link](application.properties)

@@ -17,4 +17,4 @@
 
 ### Para mais informações, acessar a documentação oficial
 
-[Springdoc-openapi](http://localhost:8080/swagger-ui/index.html)
+[Springdoc-openapi](https://springdoc.org/)

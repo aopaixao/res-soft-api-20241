@@ -2,7 +2,7 @@
 
 ## Criar um DTO para mapeamento dos dados da API externa que será consumida
 
-[RestApiDto](RestApiDto.java)
+[RestApiDto](RestAPIDto.java)
 
 
 ## Criar um service/método para consumo da API Rest com RestTemplate

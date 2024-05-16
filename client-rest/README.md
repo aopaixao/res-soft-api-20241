@@ -13,3 +13,8 @@
 ### Criar um endpoint/controller para consumo do serviço acima
 
 [ClientRestController](ClientRestController.java)
+
+
+#### API Rest utilizada nos exemplos acima
+
+[ReceitaWS API - Consulta dados de CNPJ](https://developers.receitaws.com.br/#/operations/queryCNPJFree)

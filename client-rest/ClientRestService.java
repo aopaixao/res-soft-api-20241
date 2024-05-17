@@ -21,4 +21,15 @@ public class ClientRestService {
 		
 		return dto;
 	}	
+
+	public FakeStoreUserDto getUser(String id) {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = "https://fakestoreapi.com/users/" + id;
+		
+		//ResponseEntity<FakeStoreUserDto> response = restTemplate.getForEntity(uri, FakeStoreUserDto.class);
+		//HttpStatusCode statusCode = response.getStatusCode();
+		FakeStoreUserDto dto = restTemplate.getForObject(uri, FakeStoreUserDto.class);
+		
+		return dto;
+	}	
 }
